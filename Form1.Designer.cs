@@ -41,10 +41,12 @@ namespace TIC_TAC_TOE_CPP_GAME_CREATED_BY_MOHAB_MOHSEN
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.AccessibleName = "";
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 35F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -191,12 +193,26 @@ namespace TIC_TAC_TOE_CPP_GAME_CREATED_BY_MOHAB_MOHSEN
             this.label3.TabIndex = 11;
             this.label3.Text = "Player Two Score: 0";
             // 
+            // buttonReset
+            // 
+            this.buttonReset.BackColor = System.Drawing.Color.Black;
+            this.buttonReset.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonReset.ForeColor = System.Drawing.Color.Snow;
+            this.buttonReset.Location = new System.Drawing.Point(251, 267);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(120, 70);
+            this.buttonReset.TabIndex = 12;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.UseVisualStyleBackColor = false;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(387, 374);
+            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -231,6 +247,7 @@ namespace TIC_TAC_TOE_CPP_GAME_CREATED_BY_MOHAB_MOHSEN
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonReset;
     }
 }
 

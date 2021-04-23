@@ -5,6 +5,7 @@ namespace TIC_TAC_TOE_CPP_GAME_CREATED_BY_MOHAB_MOHSEN
     public partial class Form1 : Form
     {
         private int Score1 = 0, Score2 = 0;
+        private bool GameEnded = false;
         private enum GameStates : int
         {
             over = 1,
@@ -15,7 +16,7 @@ namespace TIC_TAC_TOE_CPP_GAME_CREATED_BY_MOHAB_MOHSEN
         {
             one = 1,
             two = 2
-        } int Player = (int)Players.one;
+        } int Player = (int)Players.one,PlayerNext;
         private GameStates CheckWin()
         {
             if (button1.Text == button2.Text && button2.Text == button3.Text && button1.Text!="") return GameStates.over;
@@ -33,25 +34,53 @@ namespace TIC_TAC_TOE_CPP_GAME_CREATED_BY_MOHAB_MOHSEN
         }
         private void Process(Button temp )
         {
-            Player = (int)(Player.Equals((int)Players.two) ? (int)Players.one : (int)Players.two);
-            GameState = (int)CheckWin();
-//            temp.Enabled = true;
-            temp.Text = (Player.Equals((int)Players.two)) ? "X" : "O";
-            GameState = (int)CheckWin();
-//            temp.Enabled = false;
-            if (GameState.Equals((int)GameStates.no_win)) label1.Text = "Game State: No Win";
-            else if (GameState.Equals((int)GameStates.over))
+            if (temp.AccessibleName!="Used" && !GameEnded)
             {
-                if (Player.Equals((int)Players.two)) Score1++;
-                else Score2++; 
-                label1.Text = (Player.Equals((int)Players.two)) ? "Game State: Player One Win" : "Game State: Player Two Win";
-                label2.Text = (Player.Equals((int)Players.two)) ? "Player One Score: " + Score1.ToString() : label2.Text;
-                label3.Text = (Player.Equals((int)Players.one)) ? "Player two Score: " + Score2.ToString() : label3.Text;
+                Player = (int)(Player.Equals((int)Players.two) ? (int)Players.one : (int)Players.two);
+                temp.Text = (Player.Equals((int)Players.two)) ? "X" : "O";
+                GameState = (int)CheckWin();
+                if (GameState.Equals((int)GameStates.no_win)) label1.Text = "Game State: No Win";
+                else if (GameState.Equals((int)GameStates.over))
+                {
+                    if (Player.Equals((int)Players.two)) Score1++;
+                    else Score2++;
+                    label1.Text = (Player.Equals((int)Players.two)) ? "Game State: Player One Win" : "Game State: Player Two Win"; 
+                    label2.Text = (Player.Equals((int)Players.two)) ? "Player One Score: " + Score1.ToString() : label2.Text;
+                    label3.Text = (Player.Equals((int)Players.one)) ? "Player two Score: " + Score2.ToString() : label3.Text;
+                    GameEnded = true;
+                    PlayerNext = (int)Player;
+                }
+                else label1.Text = (Player.Equals((int)Players.two)) ? "Game State: Player One Turn" : "Game State: Player Two Turn";
+                temp.AccessibleName = "Used";
             }
-            else label1.Text = "Game State: Running...";
+        }
+        private void Reset()
+        {
+            GameEnded = false;
+            button1.Text = "";
+            button1.AccessibleName = "";
+            button2.Text = "";
+            button2.AccessibleName = "";
+            button3.Text = "";
+            button3.AccessibleName = "";
+            button4.Text = "";
+            button4.AccessibleName = "";
+            button5.Text = "";
+            button5.AccessibleName = "";
+            button6.Text = "";
+            button6.AccessibleName = "";
+            button7.Text = "";
+            button7.AccessibleName = "";
+            button8.Text = "";
+            button8.AccessibleName = "";
+            button9.Text = "";
+            button9.AccessibleName = "";
+            Player = (int)(PlayerNext.Equals((int)Players.two) ? (int)Players.one : (int)Players.two);
+            label1.Text = (Player.Equals((int)Players.one)) ? "Game State: Player One Turn" : "Game State: Player Two Turn";
         }
         public Form1() => InitializeComponent();
         private void Form1_Load(object sender, EventArgs e) { }
+        private void buttonReset_Click(object sender, EventArgs e) => Reset();
         private void button1_Click(object sender, EventArgs e) => Process(button1);
         private void button2_Click(object sender, EventArgs e) => Process(button2);
         private void button3_Click(object sender, EventArgs e) => Process(button3);

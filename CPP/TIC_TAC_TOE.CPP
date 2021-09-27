@@ -1,145 +1,100 @@
-#include "pch.h"
 #include <iostream>
 #include <cstdlib>
 using namespace std;
-enum i
-{
-	over =1,
-	progress=-1,
-	no_win=0
-
-};
-enum player
-{
-	one =1,
-	two=2
-
-};
-char square[10] = { 'o','1','2','3','4','5','6','7','8','9' };
-int checkwin(int);
-int i = progress;
-void board();
+enum GameStates { Over =1, Progressing=-1, NoWin=0 };
+int GameState = Progressing;
+enum Players { One =1, Two=2 };
+int Player = One;
+char Square[10] = { 'o','1','2','3','4','5','6','7','8','9' };
+static char DefaultSquare[10] = { 'o','1','2','3','4','5','6','7','8','9' };
+int Choice;
+char Mark;
+int CheckWin(int);
+void Board();
+void MakeMove(int);
 
 int main()
 {
 	system("color f0");
-	
-	int player = one ,  choice;
-	char a[10] = { 'o','1','2','3','4','5','6','7','8','9' };
-	char mark;
 	do
 	{
-		board();
-		player = (player % 2) ? one : two ;
-		mark = (player == one) ? 'X' : 'O';
-		cout << "Player " << player << ", enter a number:  ";
-		cin >> choice;
-
-		for (int p = 1; p <= 9;p++) {
-			
-			if (choice == p && square[p] == a[p]) {
-				
-				square[p] = mark;
-				i = checkwin(i);
-				break;
-			}
-			else
-				if(!(choice == p && square[p] == a[p]))
-			{
-					continue;
-			}
-				else{
-					cout << "Invalid move ";
-					cin.get();
-				}
-		}
-		
-		player++;
-	} while (i == progress);
-	board();
-	if (i == over)
-
-		cout << "==>\aPlayer " << --player << " win ";
-	else
-		cout << "==>\aGame draw";
-
+		Board();
+		Player = (Player % 2) ? One : Two ;
+		Mark = (Player == One) ? 'X' : 'O';
+		cout << "Player " << Player << ", Enter a Number:  ";
+		cin >> Choice;
+        MakeMove(Choice);
+		Player++;
+	} while (GameState == Progressing);
+	Board();
+	if (GameState == Over) cout << "==>\aPlayer " << --Player << " win ";
+	else cout << "==>\aGame draw";
 	cin.ignore();
 	return 0;
 }
 
-/*********************************************
+/**********************************
 	FUNCTION TO RETURN GAME STATUS
-	1 FOR GAME IS OVER WITH RESULT
-	-1 FOR GAME IS IN PROGRESS
-	O GAME IS OVER AND NO RESULT
-**********************************************/
+	1 FOR GAME IS Over WITH RESULT
+	-1 FOR GAME IS IN Progressing
+	O GAME IS Over AND NO RESULT
+***********************************/
 
-int checkwin(int i)
-{
-	if (square[1] == square[2] && square[2] == square[3])
-
-		return over;
-	else if (square[4] == square[5] && square[5] == square[6])
-
-		return over;
-	else if (square[7] == square[8] && square[8] == square[9])
-
-		return over;
-	else if (square[1] == square[4] && square[4] == square[7])
-
-		return over;
-	else if (square[2] == square[5] && square[5] == square[8])
-
-		return over;
-	else if (square[3] == square[6] && square[6] == square[9])
-
-		return over;
-	else if (square[1] == square[5] && square[5] == square[9])
-
-		return over;
-	else if (square[3] == square[5] && square[5] == square[7])
-
-		return over;
-	else if (square[1] != '1' && square[2] != '2' && square[3] != '3'
-		&& square[4] != '4' && square[5] != '5' && square[6] != '6'
-		&& square[7] != '7' && square[8] != '8' && square[9] != '9')
-
-		return no_win ;
-	else
-		return progress;
+int CheckWin(int GameState)
+{ 
+	if (equal(begin(Square),end(Square),begin(DefaultSquare))) return NoWin;
+	else if (Square[1] == Square[2] && Square[2] == Square[3]) return Over;
+	else if (Square[4] == Square[5] && Square[5] == Square[6]) return Over;
+	else if (Square[7] == Square[8] && Square[8] == Square[9]) return Over;
+	else if (Square[1] == Square[4] && Square[4] == Square[7]) return Over;
+	else if (Square[2] == Square[5] && Square[5] == Square[8]) return Over;
+	else if (Square[3] == Square[6] && Square[6] == Square[9]) return Over;
+	else if (Square[1] == Square[5] && Square[5] == Square[9]) return Over;
+	else if (Square[3] == Square[5] && Square[5] == Square[7]) return Over;
+	else return Progressing;
 }
 
+/**********************************************
+	 FUNCTION TO Make a Move WITH Players Mark
+**********************************************/
 
-/*******************************************************************
-	 FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
-********************************************************************/
+void MakeMove(int Choice)
+{
+    for (int Position = 1; Position <= 9;Position++) 
+    {
+        if (Choice == Position )
+        {
+            if( Square[Position] == DefaultSquare[Position]) 
+            {
+                Square[Position] = Mark;
+                GameState = CheckWin(GameState);
+                break;
+            }
+            else
+            {
+                cout << "Invalid move ";
+                cin.get();
+            }
+        }
+    }
+}
 
+/************************************************************
+	 FUNCTION TO DRAW Board OF TIC TAC TOE WITH Players Mark
+************************************************************/
 
-void board()
+void Board()
 {
 	system("cls");
 	cout << "\n\n\tTic Tac Toe\n\n";
-
-	cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
-	cout << endl;
-
+	cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl << endl;
 	cout << "     |     |     " << endl;
-	cout << "  " << square[1] << "  |  " << square[2] << "  |  " << square[3] << endl;
-
+	cout << "  " << Square[1] << "  |  " << Square[2] << "  |  " << Square[3] << endl;
 	cout << "_____|_____|_____" << endl;
 	cout << "     |     |     " << endl;
-
-	cout << "  " << square[4] << "  |  " << square[5] << "  |  " << square[6] << endl;
-
+	cout << "  " << Square[4] << "  |  " << Square[5] << "  |  " << Square[6] << endl;
 	cout << "_____|_____|_____" << endl;
 	cout << "     |     |     " << endl;
-
-	cout << "  " << square[7] << "  |  " << square[8] << "  |  " << square[9] << endl;
-
+	cout << "  " << Square[7] << "  |  " << Square[8] << "  |  " << Square[9] << endl;
 	cout << "     |     |     " << endl << endl;
 }
-
-/*******************************************************************
-				END OF PROJECT
-********************************************************************/
-

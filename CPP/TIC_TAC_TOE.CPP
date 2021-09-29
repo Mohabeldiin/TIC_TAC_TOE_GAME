@@ -55,7 +55,7 @@ int CheckWin(int GameState)
 }
 
 /**********************************************
-	 FUNCTION TO Make a Move WITH Players Mark
+	FUNCTION TO Make a Move WITH Players Mark
 **********************************************/
 
 void MakeMove(int Choice)
@@ -80,7 +80,7 @@ void MakeMove(int Choice)
 }
 
 /************************************************************
-	 FUNCTION TO DRAW Board OF TIC TAC TOE WITH Players Mark
+	FUNCTION TO DRAW Board OF TIC TAC TOE WITH Players Mark
 ************************************************************/
 
 void Board()

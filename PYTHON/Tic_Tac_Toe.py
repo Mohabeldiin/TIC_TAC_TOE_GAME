@@ -1,5 +1,6 @@
 # MODULES
-import pygame, sys
+import pygame
+import sys
 import numpy as np
 pygame.init()
 
@@ -25,13 +26,14 @@ pygame.display.set_caption('TIC TAC TOE')
 SCREEN.fill(BACK_GROUND_COLOR)
 BOARD = np.zeros((BOARD_ROWS, BOARD_COLS))
 
+
 def draw_lines():
-	# horizontal
-	pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (0, SQUARE_SIZE), (WIDTH, SQUARE_SIZE), LINE_WIDTH)
-	pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (0, 2 * SQUARE_SIZE), (WIDTH, 2 * SQUARE_SIZE), LINE_WIDTH)
-	# vertical
-	pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (SQUARE_SIZE, 0), (SQUARE_SIZE, HEIGHT), LINE_WIDTH)
-	pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (2 * SQUARE_SIZE, 0), (2 * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
+    # horizontal
+    pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (0, SQUARE_SIZE), (WIDTH, SQUARE_SIZE), LINE_WIDTH)
+    pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (0, 2 * SQUARE_SIZE), (WIDTH, 2 * SQUARE_SIZE), LINE_WIDTH)
+    # vertical
+    pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (SQUARE_SIZE, 0), (SQUARE_SIZE, HEIGHT), LINE_WIDTH)
+    pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (2 * SQUARE_SIZE, 0), (2 * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
 
 
 def draw_figures():
@@ -51,26 +53,26 @@ def available_square(ROW, COL): return BOARD[ROW][COL] == 0
 
 
 def is_BOARD_full():
-	for ROW in range(BOARD_ROWS):
-		for COL in range(BOARD_COLS):
-			if BOARD[ROW][COL] == 0:
-				return False
+    for ROW in range(BOARD_ROWS):
+        for COL in range(BOARD_COLS):
+            if BOARD[ROW][COL] == 0:
+                return False
 
-	return True
+    return True
 
 
 def check_win(PLAYER):
-	# vertical win check
-	for COL in range(BOARD_COLS):
-		if BOARD[0][COL] == BOARD[1][COL] == BOARD[2][COL] == PLAYER:
-			draw_vertical_winning_line(COL)
-			return True
+    # vertical win check
+    for COL in range(BOARD_COLS):
+        if BOARD[0][COL] == BOARD[1][COL] == BOARD[2][COL] == PLAYER:
+            draw_vertical_winning_line(COL)
+            return True
 
-	# horizontal win check
-	for ROW in range(BOARD_ROWS):
-		if BOARD[ROW][0] == BOARD[ROW][1] == BOARD[ROW][2] == PLAYER:
-			draw_horizontal_winning_line(ROW)
-			return True
+    # horizontal win check
+    for ROW in range(BOARD_ROWS):
+        if BOARD[ROW][0] == BOARD[ROW][1] == BOARD[ROW][2] == PLAYER:
+            draw_horizontal_winning_line(ROW)
+            return True
 
 	# diagonal win check
 	if BOARD[2][0] == BOARD[1][1] == BOARD[0][2] == PLAYER:
@@ -98,8 +100,8 @@ def draw_vertical_winning_line(COL):
 
 
 def draw_horizontal_winning_line(ROW):
-	posY = ROW * SQUARE_SIZE + SQUARE_SIZE//2
-	pygame.draw.line( SCREEN, SET_COLOR(), (15, posY), (WIDTH - 15, posY), WIN_LINE_WIDTH )
+    posY = ROW * SQUARE_SIZE + SQUARE_SIZE//2
+    pygame.draw.line(SCREEN, SET_COLOR(), (15, posY), (WIDTH - 15, posY), WIN_LINE_WIDTH)
 
 
 def draw_asc_diagonal(): pygame.draw.line(SCREEN, SET_COLOR(), (15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
@@ -131,11 +133,11 @@ while True:
 			clicked_ROW = int(mouseY // SQUARE_SIZE)
 			clicked_COL = int(mouseX // SQUARE_SIZE)
 
-			if available_square( clicked_ROW, clicked_COL ):
+			if available_square(clicked_ROW, clicked_COL):
 
-				mark_square( clicked_ROW, clicked_COL, PLAYER )
-				if check_win( PLAYER ):
-					GAME_OVER = True
+				mark_square(clicked_ROW, clicked_COL, PLAYER)
+				if check_win(PLAYER):
+				    GAME_OVER = True
 				PLAYER = PLAYER % 2 + 1
 
 				draw_figures()

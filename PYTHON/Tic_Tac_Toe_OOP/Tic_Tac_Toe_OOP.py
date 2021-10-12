@@ -1,15 +1,16 @@
 # MODULES
 import pygame
 import sys
-import numpy as np
+# import numpy as np
+from Tic_Tac_Toe_OOP import __BOARD__
 pygame.init()
 
 WIDTH = 600
 HEIGHT = 600
 LINE_WIDTH = 15
 WIN_LINE_WIDTH = 15
-BOARD_ROWS = 3
-BOARD_COLS = 3
+# BOARD_ROWS = 3
+# BOARD_COLS = 3
 SQUARE_SIZE = 200
 O_RADIUS = 60
 O_WIDTH = 15
@@ -24,7 +25,7 @@ GAME_OVER = False
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('TIC TAC TOE')
 SCREEN.fill(BACK_GROUND_COLOR)
-BOARD = np.zeros((BOARD_ROWS, BOARD_COLS))
+# BOARD = np.zeros((BOARD_ROWS, BOARD_COLS))
 
 
 def draw_lines():
@@ -51,7 +52,7 @@ def mark_square(ROW, COL, PLAYER): BOARD[ROW][COL] = PLAYER
 
 def available_square(ROW, COL): return BOARD[ROW][COL] == 0
 
-
+"""
 def is_BOARD_full():
     for ROW in range(BOARD_ROWS):
         for COL in range(BOARD_COLS):
@@ -59,7 +60,7 @@ def is_BOARD_full():
                 return False
 
     return True
-
+"""
 
 def check_win(PLAYER):
     # vertical win check
@@ -97,7 +98,6 @@ def SET_COLOR():
 def draw_vertical_winning_line(COL):
     posX = COL * SQUARE_SIZE + SQUARE_SIZE//2
     pygame.draw.line(SCREEN, SET_COLOR(), (posX, 15), (posX, HEIGHT - 15), LINE_WIDTH)
-
 
 def draw_horizontal_winning_line(ROW):
     posY = ROW * SQUARE_SIZE + SQUARE_SIZE//2
@@ -147,5 +147,7 @@ while True:
                 restart()
                 PLAYER = PLAYER % 2 + 1
                 GAME_OVER = False
+
+    
 
     pygame.display.update()

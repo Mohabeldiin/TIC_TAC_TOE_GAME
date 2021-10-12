@@ -60,7 +60,6 @@ def is_BOARD_full():
 
     return True
 
-
 def check_win(PLAYER):
     # vertical win check
     for COL in range(BOARD_COLS):

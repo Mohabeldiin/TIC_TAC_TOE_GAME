@@ -123,7 +123,7 @@ def SET_COLOR():
     """Set Color of shapes based on player turn
 
     Returns:
-        tuple: a tuple contane the HEX of the player color
+        tuple: contane the HEX of the player color
     """
     if PLAYER == 1:
         COLOR = O_COLOR

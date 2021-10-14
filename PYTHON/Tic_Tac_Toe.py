@@ -28,6 +28,8 @@ BOARD = np.zeros((BOARD_ROWS, BOARD_COLS))
 
 
 def draw_lines():
+    """Draw the Board lines
+    """
     # horizontal
     pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (0, SQUARE_SIZE), (WIDTH, SQUARE_SIZE), LINE_WIDTH)
     pygame.draw.line(SCREEN, BACK_GROUND_LINE_COLOR, (0, 2 * SQUARE_SIZE), (WIDTH, 2 * SQUARE_SIZE), LINE_WIDTH)
@@ -37,6 +39,8 @@ def draw_lines():
 
 
 def draw_figures():
+    """Draw the shap of X or O based on Player turn
+    """
     for ROW in range(BOARD_ROWS):
         for COL in range(BOARD_COLS):
             if BOARD[ROW][COL] == 1:
@@ -46,13 +50,36 @@ def draw_figures():
                 pygame.draw.line(SCREEN, X_COLOR, (COL * SQUARE_SIZE + SPACE_FOR_X, ROW * SQUARE_SIZE + SPACE_FOR_X), (COL * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X, ROW * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X), X_WIDTH)
 
 
-def mark_square(ROW, COL, PLAYER): BOARD[ROW][COL] = PLAYER
+def mark_square(ROW, COL, PLAYER):
+    """Set Square as not free for players to play in
+
+    Args:
+        ROW (int): Number of the Square on the Y-axies 
+        COL (int): Number of the Square On the X-axies
+        PLAYER (int): the Player that make the move
+    """
+    BOARD[ROW][COL] = PLAYER
 
 
-def available_square(ROW, COL): return BOARD[ROW][COL] == 0
+def available_square(ROW, COL):
+    """Check the Square Availablty for playing
+
+    Args:
+        ROW (int): Number of the Square On the Y-axies
+        COL (int): Number of the Square On the X-axies
+
+    Returns:
+        bool: True if the Square is Available (==0)
+    """
+    return BOARD[ROW][COL] == 0
 
 
 def is_BOARD_full():
+    """Chech if All Board Squares are full
+
+    Returns:
+        bool: True if All board Squares are full
+    """
     for ROW in range(BOARD_ROWS):
         for COL in range(BOARD_COLS):
             if BOARD[ROW][COL] == 0:
@@ -61,6 +88,14 @@ def is_BOARD_full():
     return True
 
 def check_win(PLAYER):
+    """Check if a player have win and Draw a line on the wining Squares
+
+    Args:
+        PLAYER (int): Number of the player
+
+    Returns:
+        bool: True if a player have win
+    """
     # vertical win check
     for COL in range(BOARD_COLS):
         if BOARD[0][COL] == BOARD[1][COL] == BOARD[2][COL] == PLAYER:
@@ -85,6 +120,11 @@ def check_win(PLAYER):
 
 
 def SET_COLOR():
+    """Set Color of shapes based on player turn
+
+    Returns:
+        tuple: a tuple contane the HEX of the player color
+    """
     if PLAYER == 1:
         COLOR = O_COLOR
     elif PLAYER == 2:
@@ -94,22 +134,40 @@ def SET_COLOR():
 
 
 def draw_vertical_winning_line(COL):
+    """Draw a Vertical Line on the Board used when player win
+
+    Args:
+        COL (int):  Number of coulme on board to Draw the line on
+    """
     posX = COL * SQUARE_SIZE + SQUARE_SIZE//2
     pygame.draw.line(SCREEN, SET_COLOR(), (posX, 15), (posX, HEIGHT - 15), LINE_WIDTH)
 
 
 def draw_horizontal_winning_line(ROW):
+    """Draw a Vertical Line on the Board used when player win
+
+    Args:
+        ROW (int): Number of row on board to Draw the line on
+    """
     posY = ROW * SQUARE_SIZE + SQUARE_SIZE//2
     pygame.draw.line(SCREEN, SET_COLOR(), (15, posY), (WIDTH - 15, posY), WIN_LINE_WIDTH)
 
 
-def draw_asc_diagonal(): pygame.draw.line(SCREEN, SET_COLOR(), (15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
+def draw_asc_diagonal():
+    """Draw a ASC Diagonal Line on the Board used when player win
+    """
+    pygame.draw.line(SCREEN, SET_COLOR(), (15, HEIGHT - 15), (WIDTH - 15, 15), WIN_LINE_WIDTH)
 
 
-def draw_desc_diagonal(): pygame.draw.line(SCREEN, SET_COLOR(), (15, 15), (WIDTH - 15, HEIGHT - 15), WIN_LINE_WIDTH)
+def draw_desc_diagonal():
+    """Draw a DESC Diagonal Line on the Board used when player win
+    """
+    pygame.draw.line(SCREEN, SET_COLOR(), (15, 15), (WIDTH - 15, HEIGHT - 15), WIN_LINE_WIDTH)
 
 
 def restart():
+    """Restart the game by seting all voard squares as avalibale to play and 
+    """
     SCREEN.fill(BACK_GROUND_COLOR)
     draw_lines()
     for ROW in range(BOARD_ROWS):

@@ -3,16 +3,34 @@ import numpy as np
 class Board():
     """Board class make a board for Tic Tac Toe game
     """
-    board_rows = 3
-    board_cols = 3
-    player = 2
+    __board_rows:(int) = 3
+    __board_cols:(int) = 3
+    __player:(int) = 2
 
 
     def __init__(self):
         """Make numpy 2D array with default value zero, 
         this 2D array simulate the board
         """
-        self.board = np.zeros((Board.board_rows, Board.board_cols))
+        self.board = np.zeros((Board.__board_rows, Board.__board_cols))
+
+    @classmethod
+    def set_player(cls, player):
+        """Set Board class player
+
+        Args:
+            player (int): player 1 for X and 2 for O
+        """
+        cls.__player = player
+
+    @classmethod
+    def get_player(cls):
+        """Get Board class player
+
+        Returns:
+            int: 1 for X and 2 for O
+        """
+        return cls.__player;
 
 
     def is_full(self)->bool:
@@ -28,15 +46,14 @@ class Board():
         return self.board[row][col] == 0
 
 
-    def mark_square(self, row, col, player):
+    def mark_square(self, row, col):
         """Set value for square on the board
 
         Args:
             row (int): number of a square on Y-axiis
             col (int): number of a square on X-axiis
-            player (int): player 1 for X and 2 for O
         """
-        self.board[row][col] = player
+        self.board[row][col] = Board.__player
 
 
     

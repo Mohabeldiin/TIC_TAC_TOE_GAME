@@ -1,21 +1,42 @@
 import numpy as np
 
-class _BOARD_():
-
-    BOARD_ROWS = 3
-    BOARD_COLS = 3
+class Board():
+    """Board class make a board for Tic Tac Toe game
+    """
+    board_rows = 3
+    board_cols = 3
+    player = 2
 
 
     def __init__(self):
-        self.BOARD_COLS = 3
-        self.BOARD_ROWS = 3
-        self.BOARD = np.zeros((self.BOARD_ROWS, self.BOARD_COLS))
+        """Make numpy 2D array with default value zero, 
+        this 2D array simulate the board
+        """
+        self.board = np.zeros((Board.board_rows, Board.board_cols))
 
 
-    def is_BOARD_full(self):
-        for ROW in range(self.BOARD_ROWS):
-            for COL in range(self.BOARD_COLS):
-                if self.BOARD[ROW][COL] == 0:
+    def is_full(self)->bool:
+        for row in range(Board.board_rows):
+            for col in range(Board.board_cols):
+                if self.BOARD[row][col] == 0:
                     return False
 
         return True
+
+
+    def available_square(self, row:int, col:int)->bool:
+        return self.board[row][col] == 0
+
+
+    def mark_square(self, row, col, player):
+        """Set value for square on the board
+
+        Args:
+            row (int): number of a square on Y-axiis
+            col (int): number of a square on X-axiis
+            player (int): player 1 for X and 2 for O
+        """
+        self.board[row][col] = player
+
+
+    

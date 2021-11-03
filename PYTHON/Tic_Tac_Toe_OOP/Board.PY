@@ -31,6 +31,16 @@ class Board():
         return cls.__player;
 
 
+    @classmethod
+    def get_BOARD(cls):
+        """Get Board class BOARD
+
+        Returns:
+            int: BOARD rows or cols
+        """
+        return cls.__BOARD
+
+
     def is_full(self):
         """Check if there is free square on the board
 

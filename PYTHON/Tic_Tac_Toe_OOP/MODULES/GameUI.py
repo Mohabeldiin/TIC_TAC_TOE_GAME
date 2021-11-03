@@ -6,7 +6,6 @@ class GameUI():
 
     def __init__(self):
         pygame.init()
-        Board
 
 WIDTH = 600
 HEIGHT = 600
@@ -41,11 +40,11 @@ def draw_lines():
 def draw_figures():
     """[summary]
     """
-    for ROW in range(Board. BOARD_ROWS):
-        for COL in range(BOARD_COLS):
-            if BOARD[ROW][COL] == 1:
-                pygame.draw.circle(SCREEN, O_COLOR, (int(COL * SQUARE_SIZE + SQUARE_SIZE//2 ), int(ROW * SQUARE_SIZE + SQUARE_SIZE//2 )), O_RADIUS, O_WIDTH)
-            elif BOARD[ROW][COL] == 2:
-                pygame.draw.line(SCREEN, X_COLOR, (COL * SQUARE_SIZE + SPACE_FOR_X, ROW * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X), (COL * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X, ROW * SQUARE_SIZE + SPACE_FOR_X), X_WIDTH)	
-                pygame.draw.line(SCREEN, X_COLOR, (COL * SQUARE_SIZE + SPACE_FOR_X, ROW * SQUARE_SIZE + SPACE_FOR_X), (COL * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X, ROW * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X), X_WIDTH)
+    for row in range(Board.get_BOARD):
+        for col in range(Board.get_BOARD):
+            if Board.board[row][col] == 1:
+                pygame.draw.circle(SCREEN, O_COLOR, (int(col * SQUARE_SIZE + SQUARE_SIZE//2 ), int(row * SQUARE_SIZE + SQUARE_SIZE//2 )), O_RADIUS, O_WIDTH)
+            elif Board.board[row][col] == 2:
+                pygame.draw.line(SCREEN, X_COLOR, (col * SQUARE_SIZE + SPACE_FOR_X, row * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X), (col * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X, row * SQUARE_SIZE + SPACE_FOR_X), X_WIDTH)	
+                pygame.draw.line(SCREEN, X_COLOR, (col * SQUARE_SIZE + SPACE_FOR_X, row * SQUARE_SIZE + SPACE_FOR_X), (col * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X, row * SQUARE_SIZE + SQUARE_SIZE - SPACE_FOR_X), X_WIDTH)
 

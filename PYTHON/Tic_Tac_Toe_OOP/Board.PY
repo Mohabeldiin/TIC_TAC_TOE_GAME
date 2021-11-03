@@ -1,9 +1,8 @@
 import numpy as np
-class Board(np):
+class Board():
     """Board class make a board for Tic Tac Toe game
     """
-    __board_rows:(int) = 3
-    __board_cols:(int) = 3
+    __BOARD:(int) = 3
     __player:(int) = 2
 
 
@@ -11,7 +10,7 @@ class Board(np):
         """Make numpy 2D array with default value zero, 
         this 2D array simulate the board
         """
-        self.board = np.zeros((Board.__board_rows, Board.__board_cols))
+        self.board = np.zeros((Board.__BOARD, Board.__BOARD))
 
     @classmethod
     def set_player(cls, player):
@@ -38,9 +37,9 @@ class Board(np):
         Returns:
             bool: True if there is no free square on the board
         """
-        for row in range(Board.board_rows):
-            for col in range(Board.board_cols):
-                if self.BOARD[row][col] == 0:
+        for row in range(Board.__BOARD):
+            for col in range(Board.__BOARD):
+                if self.board[row][col] == 0:
                     return False
 
         return True

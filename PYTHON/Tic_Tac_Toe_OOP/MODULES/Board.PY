@@ -12,7 +12,7 @@ class Board():
         """
         self.board = np.zeros((Board.__BOARD, Board.__BOARD))
 
-    @__player.__setattr__
+    @classmethod
     def set_player(cls, player):
         """Set Board class player
 
@@ -21,7 +21,7 @@ class Board():
         """
         cls.__player = player
 
-    @__player.__getattribute__
+    @classmethod
     def get_player(cls):
         """Get Board class player
 
@@ -31,7 +31,7 @@ class Board():
         return cls.__player;
 
 
-    @__BOARD.__getattribute__
+    @classmethod
     def get_BOARD(cls):
         """Get Board class BOARD
 

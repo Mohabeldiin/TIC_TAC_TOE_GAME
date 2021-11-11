@@ -24,10 +24,6 @@ class GameUI():
         self.screen.fill(GameUI.BACK_GROUND_COLOR)
 
             
-
-
-
-
     def draw_lines(self):
         """Draw the self.screen lines
         """

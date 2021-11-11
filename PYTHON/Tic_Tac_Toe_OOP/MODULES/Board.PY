@@ -12,7 +12,7 @@ class Board():
         """
         self.board = np.zeros((Board.__BOARD, Board.__BOARD))
 
-    @classmethod
+    @__player.__setattr__
     def set_player(cls, player):
         """Set Board class player
 
@@ -21,7 +21,7 @@ class Board():
         """
         cls.__player = player
 
-    @classmethod
+    @__player.__getattribute__
     def get_player(cls):
         """Get Board class player
 
@@ -31,7 +31,7 @@ class Board():
         return cls.__player;
 
 
-    @classmethod
+    @__BOARD.__getattribute__
     def get_BOARD(cls):
         """Get Board class BOARD
 
@@ -41,6 +41,7 @@ class Board():
         return cls.__BOARD
 
 
+    @classmethod
     def is_full(self):
         """Check if there is free square on the board
 
@@ -55,6 +56,7 @@ class Board():
         return True
 
 
+    @classmethod
     def available_square(self, row:int, col:int):
         """Check if player can play in this square
 

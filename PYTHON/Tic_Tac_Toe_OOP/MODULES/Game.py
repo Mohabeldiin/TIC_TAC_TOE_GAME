@@ -1,5 +1,5 @@
-from MODULES import Board
-from MODULES import GameUI
+import Board
+import GameUI
 class Game():
     """Game class run the Tic Tac Toe game
     """
@@ -46,8 +46,8 @@ class Game():
 
     def SET_COLOR():    
         if Board.Board.get_player() == 1:
-            COLOR =  GameUI.O_COLOR
+            COLOR =  GameUI.GameUI.O_COLOR
         elif Board.Board.get_player == 2:
-            COLOR = GameUI.X_COLOR
+            COLOR = GameUI.GameUI.X_COLOR
 
         return COLOR

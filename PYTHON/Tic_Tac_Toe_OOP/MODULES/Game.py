@@ -1,9 +1,9 @@
-
-import GameUI
-import Board
+from MODULES import Board
+from MODULES import GameUI
 class Game():
     """Game class run the Tic Tac Toe game
     """
+    game_over = False
 
     def check_win(): 
         """Check if player win
@@ -42,3 +42,12 @@ class Game():
         for row in range(Board.Board.get_BOARD()):
             for col in range(Board.Board.get_BOARD()):
                 Board.Board.board[row][col] = 0
+
+
+    def SET_COLOR():    
+        if Board.Board.get_player() == 1:
+            COLOR =  GameUI.O_COLOR
+        elif Board.Board.get_player == 2:
+            COLOR = GameUI.X_COLOR
+
+        return COLOR

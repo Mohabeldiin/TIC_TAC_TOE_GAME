@@ -1,5 +1,5 @@
 import pygame
-import Board
+from Board import Board
 class GameUI():
     """GameUI class make UI self.screen of the Tic Tac Toe game
     """
@@ -38,11 +38,51 @@ class GameUI():
     def draw_figures(self):
         """Draw figure of X or O
         """
-        for row in range(Board.Board.get_BOARD):
-            for col in range(Board.Board.get_BOARD):
-                if Board.Board.board[row][col] == 1:
+        for row in range(Board.get_BOARD):
+            for col in range(Board.get_BOARD):
+                if Board.board[row][col] == 1:
                     pygame.draw.circle(self.screen, GameUI.O_COLOR, (int(col * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE//2 ), int(row * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE//2 )), GameUI.O_RADIUS, GameUI.O_WIDTH)
-                elif Board.Board.board[row][col] == 2:
+                elif Board.board[row][col] == 2:
                     pygame.draw.line(self.screen, GameUI.X_COLOR, (col * GameUI.SQUARE_SIZE + GameUI.SPACE_FOR_X, row * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE - GameUI.SPACE_FOR_X), (col * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE - GameUI.SPACE_FOR_X, row * GameUI.SQUARE_SIZE + GameUI.SPACE_FOR_X), GameUI.X_WIDTH)	
                     pygame.draw.line(self.screen, GameUI.X_COLOR, (col * GameUI.SQUARE_SIZE + GameUI.SPACE_FOR_X, row * GameUI.SQUARE_SIZE + GameUI.SPACE_FOR_X), (col * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE - GameUI.SPACE_FOR_X, row * GameUI.SQUARE_SIZE +GameUI. SQUARE_SIZE - GameUI.SPACE_FOR_X), GameUI.X_WIDTH)
 
+
+    def SET_COLOR():    
+        if Board.get_player() == 1:
+            COLOR =  GameUI.O_COLOR
+        elif Board.get_player == 2:
+            COLOR = GameUI.X_COLOR
+
+        return COLOR
+
+
+    def draw_vertical_winning_line(self , col):
+        """Draw a Vertical Line on the Board used when player win
+
+        Args:
+            COL (int):  Number of coulme on board to Draw the line on
+        """
+        posX = col * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE//2
+        pygame.draw.line(self.screen, GameUI.SET_COLOR(), (posX, 15), (posX, GameUI.HEIGHT - 15), GameUI.LINE_WIDTH)
+
+
+    def draw_horizontal_winning_line(self, row):
+        """Draw a Vertical Line on the Board used when player win
+
+        Args:
+            ROW (int): Number of row on board to Draw the line on
+        """
+        posY = row * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE//2
+        pygame.draw.line(self.screen, GameUI.SET_COLOR(), (15, posY), (GameUI.WIDTH - 15, posY), GameUI.WIN_LINE_WIDTH)
+
+
+    def draw_asc_diagonal(self):
+        """Draw a ASC Diagonal Line on the Board used when player win
+        """
+        pygame.draw.line(self.screen, GameUI.SET_COLOR(), (15, GameUI.HEIGHT - 15), (GameUI.WIDTH - 15, 15), GameUI.WIN_LINE_WIDTH)
+
+
+    def draw_desc_diagonal(self):
+        """Draw a DESC Diagonal Line on the Board used when player win
+        """
+        pygame.draw.line(self.screen, GameUI.SET_COLOR(), (15, 15), (GameUI.WIDTH - 15, GameUI.HEIGHT - 15), GameUI.WIN_LINE_WIDTH)

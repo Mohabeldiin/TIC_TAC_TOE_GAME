@@ -2,15 +2,15 @@ import numpy
 class Board():
     """Board class make a board for Tic Tac Toe game
     """
-    __BOARD:(int) = 3
-    __player:(int) = 2
+    BOARD_OX = 3
+    playerXO = 2
+    board = numpy.zeros((BOARD_OX, BOARD_OX))
 
 
     def __init__(self):
         """Make numpy 2D array with default value zero, 
         this 2D array simulate the board
         """
-        self.board = numpy.zeros((Board.__BOARD, Board.__BOARD))
 
     @classmethod
     def set_player(cls, player):
@@ -19,7 +19,7 @@ class Board():
         Args:
             player (int): player 1 for X and 2 for O
         """
-        cls.__player = player
+        cls.playerXO = player
 
     @classmethod
     def get_player(cls):
@@ -28,36 +28,36 @@ class Board():
         Returns:
             int: 1 for X and 2 for O
         """
-        return cls.__player;
+        return cls.playerXO;
 
 
-    @classmethod
-    def get_BOARD(cls):
+    
+    def get_BOARD():
         """Get Board class BOARD
 
         Returns:
             int: BOARD rows or cols
         """
-        return cls.__BOARD
+        return Board.BOARD_OX
 
 
     @classmethod
-    def is_full(self):
+    def is_full(cls):
         """Check if there is free square on the board
 
         Returns:
             bool: True if there is no free square on the board
         """
-        for row in range(Board.__BOARD):
-            for col in range(Board.__BOARD):
-                if self.board[row][col] == 0:
+        for row in range(Board.BOARD_OX):
+            for col in range(Board.BOARD_OX):
+                if cls.board[row][col] == 0:
                     return False
 
         return True
 
 
     @classmethod
-    def available_square(self, row:int, col:int):
+    def available_square(cls, row:int, col:int):
         """Check if player can play in this square
 
         Args:
@@ -67,16 +67,14 @@ class Board():
         Returns:
             bool: True if sqyare is available for player to play in
         """
-        return self.board[row][col] == 0
+        return cls.board[row][col] == 0
 
 
-    def mark_square(self, row, col):
+    def mark_square(row:int, col:int,player ):
         """Set value for square on the board
 
         Args:
             row (int): number of a square on Y-axiis
             col (int): number of a square on X-axiis
         """
-        self.board[row][col] = Board.__player
-
-
+        Board.board[row][col] = player

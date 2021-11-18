@@ -39,8 +39,8 @@ class GameUI():
     def draw_figures(self):
         """Draw figure of X or O
         """
-        for row in range(Board.get_BOARD):
-            for col in range(Board.get_BOARD):
+        for row in range(Board.get_BOARD()):
+            for col in range(Board.get_BOARD()):
                 if Board.board[row][col] == 1:
                     GameUI.pygame.draw.circle(self.screen, GameUI.O_COLOR, (int(col * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE//2 ), int(row * GameUI.SQUARE_SIZE + GameUI.SQUARE_SIZE//2 )), GameUI.O_RADIUS, GameUI.O_WIDTH)
                 elif Board.board[row][col] == 2:

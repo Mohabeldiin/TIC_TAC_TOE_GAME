@@ -23,9 +23,9 @@ while True:
             if Board.available_square(clicked_ROW, clicked_COL):
 
                 Board.mark_square(clicked_ROW, clicked_COL, Board.get_player())
-                if Game.check_win(Board.get_player()):
+                if Game.check_win():
                     Game.game_over = True
-                Board.set_player = Board.get_player % 2 + 1
+                Board.set_player = Board.get_player() % 2 + 1
 
                 gameui.draw_figures()
                 

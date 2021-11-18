@@ -1,41 +1,41 @@
 # MODULES
-from MODULES import Board
-from MODULES import GameUI
-from MODULES import Game
+from MODULES.Board import Board
+from MODULES.GameUI import GameUI
+from MODULES.Game import Game
 import sys 
 
-
-Game.GameUI.draw_lines()
+gameui = GameUI() 
+gameui.draw_lines()
 
 while True:
-    for event in Game.GameUI.pygame.event.get():
-        if event.type == Game.GameUI.pygame.pygame.QUIT:
+    for event in gameui.pygame.event.get():
+        if event.type == gameui.pygame.QUIT:
             sys.exit()
 
-        if event.type == Game.GameUI.pygame.pygame.MOUSEBUTTONDOWN and not Game.Game.game_over:
+        if event.type == gameui.pygame.MOUSEBUTTONDOWN and not Game.game_over:
 
             mouseX = event.pos[0]  # x
             mouseY = event.pos[1]  # y
 
-            clicked_ROW = int(mouseY // GameUI.GameUI.SQUARE_SIZE)
-            clicked_COL = int(mouseX // GameUI.GameUI.SQUARE_SIZE)
+            clicked_ROW = int(mouseY // gameui.SQUARE_SIZE)
+            clicked_COL = int(mouseX // gameui.SQUARE_SIZE)
 
-            if Game.Board.Board.available_square(clicked_ROW, clicked_COL):
+            if Board.available_square(clicked_ROW, clicked_COL):
 
-                Board.Board.mark_square(clicked_ROW, clicked_COL, Board.Board.get_player())
-                if Game.Game.check_win(Board.Board.get_player()):
-                    Game.Game.game_over = True
-                Board.Board.set_player = Board.Board.get_player % 2 + 1
+                Board.mark_square(clicked_ROW, clicked_COL, Board.get_player())
+                if Game.check_win(Board.get_player()):
+                    Game.game_over = True
+                Board.set_player = Board.get_player % 2 + 1
 
-                GameUI.GameUI.draw_figures()
+                gameui.draw_figures()
                 
 
-        if event.type == GameUI.pygame.KEYDOWN:
-            if event.key == GameUI.pygame.K_r:
-                Game.Game.restart()
-                Board.Board.set_player = Board.Board.get_player % 2 + 1
-                Game.Game.game_over = False
+        if event.type == gameui.pygame.KEYDOWN:
+            if event.key == gameui.pygame.K_r:
+                Game.restart()
+                Board.set_player = Board.get_player % 2 + 1
+                Game.game_over = False
 
     
 
-    GameUI.pygame.display.update()
+    gameui.pygame.display.update()

@@ -1,4 +1,4 @@
-import numpy as np
+import numpy
 class Board():
     """Board class make a board for Tic Tac Toe game
     """
@@ -10,7 +10,7 @@ class Board():
         """Make numpy 2D array with default value zero, 
         this 2D array simulate the board
         """
-        self.board = np.zeros((Board.__BOARD, Board.__BOARD))
+        self.board = numpy.zeros((Board.__BOARD, Board.__BOARD))
 
     @classmethod
     def set_player(cls, player):

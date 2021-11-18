@@ -12,14 +12,14 @@ class Board():
         this 2D array simulate the board
         """
 
-    @classmethod
-    def set_player(cls, player):
+    
+    def set_player(player):
         """Set Board class player
 
         Args:
             player (int): player 1 for X and 2 for O
         """
-        cls.playerXO = player
+        Board.playerXO = player
 
     @classmethod
     def get_player(cls):

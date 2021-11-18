@@ -25,7 +25,7 @@ while True:
                 Board.mark_square(clicked_ROW, clicked_COL, Board.get_player())
                 if Game.check_win():
                     Game.game_over = True
-                Board.set_player = Board.get_player() % 2 + 1
+                Board.set_player(Board.get_player() % 2 + 1)
 
                 gameui.draw_figures()
                 
@@ -33,7 +33,7 @@ while True:
         if event.type == gameui.pygame.KEYDOWN:
             if event.key == gameui.pygame.K_r:
                 Game.restart()
-                Board.set_player = Board.get_player % 2 + 1
+                Board.set_player(Board.get_player % 2 + 1)
                 Game.game_over = False
 
     

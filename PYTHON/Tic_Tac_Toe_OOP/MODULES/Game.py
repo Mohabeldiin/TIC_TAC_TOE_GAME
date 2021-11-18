@@ -12,9 +12,9 @@ class Game():
             bool: True if player win
         """
         # vertical win check
-        for col in range(Board.get_BOARD()):
-            if Board.board[0][col] == Board.board[1][col] == Board.board[2][col] == Board.get_player():
-                GameUI.draw_vertical_winning_line(col)
+        for co in range(Board.get_BOARD()):
+            if Board.board[0][co] == Board.board[1][co] == Board.board[2][co] == Board.get_player():
+                GameUI.draw_vertical_winning_line(co)
                 return True
 
         # horizontal win check

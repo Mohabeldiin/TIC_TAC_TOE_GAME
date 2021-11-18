@@ -4,21 +4,20 @@ from MODULES.GameUI import GameUI
 from MODULES.Game import Game
 import sys 
 
-gameui = GameUI() 
-gameui.draw_lines()
+GameUI.draw_lines()
 
 while True:
-    for event in gameui.pygame.event.get():
-        if event.type == gameui.pygame.QUIT:
+    for event in GameUI.pygame.event.get():
+        if event.type == GameUI.pygame.QUIT:
             sys.exit()
 
-        if event.type == gameui.pygame.MOUSEBUTTONDOWN and not Game.game_over:
+        if event.type == GameUI.pygame.MOUSEBUTTONDOWN and not Game.game_over:
 
             mouseX = event.pos[0]  # x
             mouseY = event.pos[1]  # y
 
-            clicked_ROW = int(mouseY // gameui.SQUARE_SIZE)
-            clicked_COL = int(mouseX // gameui.SQUARE_SIZE)
+            clicked_ROW = int(mouseY // GameUI.SQUARE_SIZE)
+            clicked_COL = int(mouseX // GameUI.SQUARE_SIZE)
 
             if Board.available_square(clicked_ROW, clicked_COL):
 
@@ -27,15 +26,15 @@ while True:
                     Game.game_over = True
                 Board.set_player(Board.get_player() % 2 + 1)
 
-                gameui.draw_figures()
+                GameUI.draw_figures()
                 
 
-        if event.type == gameui.pygame.KEYDOWN:
-            if event.key == gameui.pygame.K_r:
+        if event.type == GameUI.pygame.KEYDOWN:
+            if event.key == GameUI.pygame.K_r:
                 Game.restart()
                 Board.set_player(Board.get_player % 2 + 1)
                 Game.game_over = False
 
     
 
-    gameui.pygame.display.update()
+    GameUI.pygame.display.update()

@@ -32,7 +32,7 @@ while True:
         if event.type == GameUI.pygame.KEYDOWN:
             if event.key == GameUI.pygame.K_r:
                 Game.restart()
-                Board.set_player(Board.get_player % 2 + 1)
+                Board.set_player(Board.get_player() % 2 + 1)
                 Game.game_over = False
 
     
